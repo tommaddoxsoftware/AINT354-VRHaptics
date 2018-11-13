@@ -470,14 +470,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f005cb8ceffbc534789d70dc692005e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LLL_Button: {fileID: 1364625726}
-  ULL_Button: {fileID: 2032536694}
-  LLA_Button: {fileID: 2094925778}
-  ULA_Button: {fileID: 1866774950}
-  LLL_message: 
-  ULL_message: 
-  LLA_message: 
-  ULA_message: 
 --- !u!114 &233076015
 MonoBehaviour:
   m_ObjectHideFlags: 0
