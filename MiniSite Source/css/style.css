@@ -189,7 +189,7 @@ img { max-width: 100%; }
 */
 .navbar-brand {
     font-weight:bold;
-    
+
 }
 
 /***** Top content *****/
@@ -203,7 +203,10 @@ img { max-width: 100%; }
 }
 
 .intro .text h1 {
-	margin-top: 25px;
+	margin-top: 15px;
+    font-size:40px;
+    font-weight:bold;
+    text-shadow: 1px 1px black;
 	color: #fff;
 }
 
@@ -211,7 +214,11 @@ img { max-width: 100%; }
 	margin: 30px 0 10px 0;
 }
 
-.intro .description p { opacity: 0.8; }
+.intro .description p {
+    opacity: 1;
+    font-weight: 400;
+    text-shadow: 1px 1px 3px black;
+}
 
 .intro .top-big-link {
 	margin-top: 45px;
