@@ -41,8 +41,17 @@ public class SendMsgArduino : MonoBehaviour {
 
     public void SendArduinoMessage(string message)
     {
+        try
+        {
+            stream.Open();
+        }
+        catch (Exception ex)
+        {
+            Debug.Log("Error: " + ex);
+        }
         //Send message to arduino
         stream.Write(message);
         Debug.Log("Message was sent. Message was: " + message);
+        stream.Close();
     }
 }
