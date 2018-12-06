@@ -7,12 +7,32 @@ public class CollisionDetection : MonoBehaviour {
     [SerializeField]
     private string HitboxName;
     [SerializeField]
+    private GameObject ArduinoController;
+    private SendMsgArduino arduino;
+       
+    private void Start()
+    {
+        arduino = ArduinoController.GetComponent<SendMsgArduino>();    
+    }
 
     void OnCollisionEnter(Collision col)
     {
+        Debug.Log(HitboxName + " collided!");
+        Debug.Log("Collider Tag: " + col.gameObject.tag);
         if(col.gameObject.tag == "Wall")
         {
+            string msg = "";
+            if(HitboxName == "LeftArm")
+            {
+                msg = "LUpperArm";
+            }
+            else if(HitboxName == "RightArm")
+            {
+                msg = "RUpperArm";
+            }
 
+            //Send message to arduinol
+            arduino.SendArduinoMessage(msg);
         }
     }
 
