@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UIOpenDoor : MonoBehaviour {
     [SerializeField]
@@ -52,5 +53,15 @@ public class UIOpenDoor : MonoBehaviour {
         }
     }
 
-    
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag == "Finish")
+        {
+            //If tag is "finish", reload the scene
+            Scene currLevel = SceneManager.GetActiveScene();
+            SceneManager.LoadScene(currLevel.buildIndex);
+        }
+    }
+
+
 }
