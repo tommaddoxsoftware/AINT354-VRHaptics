@@ -17,8 +17,7 @@ public class CollisionDetection : MonoBehaviour {
 
     void OnCollisionEnter(Collision col)
     {
-        Debug.Log(HitboxName + " collided!");
-        Debug.Log("Collider Tag: " + col.gameObject.tag);
+       
         if(col.gameObject.tag == "Wall")
         {
             string msg = "";
@@ -33,6 +32,8 @@ public class CollisionDetection : MonoBehaviour {
 
             //Send message to arduinol
             arduino.SendArduinoMessage(msg);
+
+            Debug.Log("Hit Wall, should've sent to arduino");
         }
     }
 
