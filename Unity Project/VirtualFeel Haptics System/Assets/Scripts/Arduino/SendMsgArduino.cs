@@ -3,27 +3,40 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO.Ports;
 using System;
+using UnityEngine.UI;
 
 public class SendMsgArduino : MonoBehaviour {
     [SerializeField]
-    private string portName;
+    private int portNum;
 
     SerialPort stream;
+
+    [SerializeField]
+    private Text comStatus;
 
 	// Use this for initialization
 	void Start () {
         //Initialise the serial port
-        stream = new SerialPort(portName, 9600);
+        for(int i=0; i<10; i++)
+        {
+            portNum = i;
+            stream = new SerialPort("COM" + portNum, 9600);
+            try
+            {
+                Debug.Log("Trying to open serial port: " + "COM" + i);
+                stream.Open();
+                Debug.Log("Serial Port Open");
+                comStatus.text = "Com Port Status: Connected on COM" + i;
+                break;
+            }
+            catch (Exception ex)
+            {
+                Debug.Log("Failed to open port. Error: " + ex);
+            }
+        }
+        
 
-        try
-        {
-            stream.Open();
-            Debug.Log("Serial Port Open");
-        }
-        catch(Exception ex)
-        {
-            Debug.Log("Failed to open port. Error: " + ex);
-        }
+        
         
 	}
 	
