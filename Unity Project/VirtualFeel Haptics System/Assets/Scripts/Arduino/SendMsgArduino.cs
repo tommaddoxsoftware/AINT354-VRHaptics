@@ -12,18 +12,25 @@ public class SendMsgArduino : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        //Initialise the serial port
-        stream = new SerialPort(portName, 9600);
+        for(int i = 3; i<4; i++)
+        {
+            int portNum = i;
+            //Initialise the serial port
+            stream = new SerialPort("COM"+portNum, 9600);
 
-        try
-        {
-            stream.Open();
-            Debug.Log("Serial Port Open");
+            try
+            {
+                stream.Open();
+                Debug.Log("Serial Port Open. Running on COM"+portNum);
+                
+            }
+            catch (Exception ex)
+            {
+                Debug.Log("Tried to open COM" + i + " . Failed to open, trying next");
+              
+            }
         }
-        catch(Exception ex)
-        {
-            Debug.Log("Failed to open port. Error: " + ex);
-        }
+        
         
 	}
 	
