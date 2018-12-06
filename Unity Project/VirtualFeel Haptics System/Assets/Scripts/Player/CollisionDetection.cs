@@ -17,8 +17,7 @@ public class CollisionDetection : MonoBehaviour {
 
     void OnCollisionEnter(Collision col)
     {
-        Debug.Log(HitboxName + " collided!");
-        Debug.Log("Collider Tag: " + col.gameObject.tag);
+
         if(col.gameObject.tag == "Wall")
         {
             string msg = "";
