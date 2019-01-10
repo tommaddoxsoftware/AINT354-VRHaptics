@@ -11,8 +11,6 @@ public class SendMsgArduino : MonoBehaviour {
 
     SerialPort stream;
 
-    [SerializeField]
-    private Text comStatus;
 
 	// Use this for initialization
 	void Start () {
@@ -21,18 +19,24 @@ public class SendMsgArduino : MonoBehaviour {
         {
             portNum = i;
             stream = new SerialPort("COM" + portNum, 9600);
-            try
+
+            if(!stream.IsOpen)
             {
-                Debug.Log("Trying to open serial port: " + "COM" + i);
-                stream.Open();
-                Debug.Log("Serial Port Open");
-                comStatus.text = "Com Port Status: Connected on COM" + i;
-                break;
+                try
+                {
+                    Debug.Log("Trying to open serial port: " + "COM" + i);
+                    stream.Open();
+                    Debug.Log("Serial Port Open");
+
+                    break;
+                }
+                catch (Exception ex)
+                {
+                    Debug.Log("Failed to open port. Error: " + ex);
+                }
             }
-            catch (Exception ex)
-            {
-                Debug.Log("Failed to open port. Error: " + ex);
-            }
+
+            
         }
         
 
