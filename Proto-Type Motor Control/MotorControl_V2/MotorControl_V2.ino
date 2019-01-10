@@ -24,14 +24,15 @@ void setup()
 
 
 void loop() {
-
+  digitalWrite(6, HIGH);
   while(Serial.available()) {
     content = Serial.readString();
+    Serial.println(content);
   }
 
   if(content.substring(0,9) == "LUPPERARM") { 
     String motorType =  content.substring(9, (content.length())); 
-   
+    StopAllMotors();
       //Turn Motors On
       if(motorType == "RUMBLE") {
         //Rumble motors
@@ -46,14 +47,13 @@ void loop() {
         //Both motors
         digitalWrite(3, HIGH);
         digitalWrite(4, HIGH);
-        digitalWrite(5, HIGH);
-      }
+        digitalWrite(5, HIGH);      }
       
       
   }
-  else if(content.substring(0,9) == "RUPPERARM") {
+  if(content.substring(0,9) == "RUPPERARM") {
     String motorType =  content.substring(9, (content.length())); 
-   
+      StopAllMotors();
       //Turn Motors On
       if(motorType == "RUMBLE") {
         //Rumble motors
@@ -69,13 +69,44 @@ void loop() {
         digitalWrite(7, HIGH);
       }
   }
+
+  if(content.substring(0,5) == "BOTH") {
+       String motorType =  content.substring(5, (content.length())); 
+
+       if(motorType == "COIN") {
+        digitalWrite(3, HIGH);
+        digitalWrite(5, HIGH);
+        digitalWrite(7, HIGH);
+       }
+       else if(motorType == "RUMBLE") {
+        digitalWrite(6, HIGH);
+        digitalWrite(4, HIGH);
+       }
+
+       else {
+        FireAllMotors();
+       }
+    }  
   else {
-    //Turn motors off
+    StopAllMotors();    
+  }  
+
+}
+
+void StopAllMotors() {
+     //Turn motors off
     digitalWrite(3, LOW);
     digitalWrite(4, LOW);
     digitalWrite(5, LOW);
     digitalWrite(6, LOW);
-    digitalWrite(7, LOW);    
-  }  
+    digitalWrite(7, LOW);
+}
 
+void FireAllMotors() {
+     //Turn motors off
+    digitalWrite(3, HIGH);
+    digitalWrite(4, HIGH);
+    digitalWrite(5, HIGH);
+    digitalWrite(6, HIGH);
+    digitalWrite(7, HIGH);
 }
