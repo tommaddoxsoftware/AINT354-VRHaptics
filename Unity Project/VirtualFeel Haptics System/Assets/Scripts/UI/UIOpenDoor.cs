@@ -10,9 +10,6 @@ public class UIOpenDoor : MonoBehaviour {
     [SerializeField]
     GameObject rightDoor;
 
-    [SerializeField]
-    GameObject TutorialUI;
-
     private bool leftOpen = false;
     private bool rightOpen = false;
 
@@ -49,7 +46,6 @@ public class UIOpenDoor : MonoBehaviour {
 
             leftOpen = rightOpen = true;
 
-            TutorialUI.SetActive(false);
         }
     }
 
