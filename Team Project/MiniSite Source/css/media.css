@@ -1,0 +1,61 @@
+
+@media (min-width: 992px) and (max-width: 1199px) {
+
+	.project-box .project-box-icon { width: 60px; height: 60px; font-size: 32px; line-height: 60px; border-radius: 22px; }
+
+	.team-box-text { padding-right: 0; }
+
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+
+	.navbar-expand-md .navbar-nav .nav-link { padding-left: 0.6rem; padding-right: 0.6rem; }
+
+	.intro { padding: 180px 0; }
+
+	.section-description p { padding: 0; }
+
+	.project-box .project-icon { width: 50px; height: 50px; font-size: 26px; line-height: 50px; border-radius: 18px; }
+
+	.team-box { margin-top: 80px; }
+	.team-box:last-child { margin-top: 50px; }
+	.team-box-text { padding-right: 0; text-align: center; }
+
+	.contact-box .contact-box-icon { width: 50px; height: 50px; font-size: 26px; line-height: 50px; border-radius: 18px; }
+}
+
+@media (max-width: 767px) {
+
+	.navbar.navbar-no-bg { background: #444; }
+	.navbar-dark .navbar-toggler { border-color: #444; }
+	.navbar-dark .navbar-toggler:focus { background: #333; outline: 0; }
+	.navbar-expand-md .navbar-nav .nav-link { padding-top: 0.3rem; padding-bottom: 0.3rem; }
+
+	.intro { padding: 140px 0; }
+	.intro .top-big-link { margin-top: 25px; }
+	.intro .top-big-link a.btn { margin-top: 10px; }
+
+	.section-description p { padding: 0; }
+
+	.project-container { padding-bottom: 60px; }
+	.project-box { text-align: center; }
+	.project-box h3 { margin-top: 20px; padding-top: 10px; }
+
+	.team-box { margin-top: 80px; }
+	.team-box:last-child { margin-top: 50px; }
+	.team-box-text { padding-right: 0; text-align: center; }
+
+	.contact-box { text-align: center; }
+	.contact-box h3 { margin-top: 20px; padding-top: 10px; }
+
+	footer { text-align: center; }
+	.footer-right { padding-top: 10px; text-align: center; }
+	.footer-bottom { padding-top: 20px; }
+
+}
+
+@media (max-width: 415px) {
+
+	h1, h2 { font-size: 32px; }
+
+}
