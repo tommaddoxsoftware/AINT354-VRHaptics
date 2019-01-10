@@ -14,7 +14,7 @@ public class CollisionDetection : MonoBehaviour {
     [SerializeField]
     private GameObject doorController;
 
-    private int lCon, rCon = 0;
+    private int lCon, rCon, fCon = 0;
     private bool running = false;
 
 
@@ -47,13 +47,12 @@ public class CollisionDetection : MonoBehaviour {
             }
             else if (HitboxName == "FrontCol")
             {
-                msg = "BOTHRUMBLE";
+                msg = "BOTHCOIN";
             }
 
             //Send message to arduinol
             arduino.SendArduinoMessage(msg);
 
-            Debug.Log("Hit Wall, should've sent to arduino");
         }
     }
 
@@ -75,6 +74,7 @@ public class CollisionDetection : MonoBehaviour {
 
                         break;
                     case "FrontCol":
+                        InvokeRepeating("IncrementFront", 1f, 1f);
                         break;
                 }
             }
@@ -95,7 +95,7 @@ public class CollisionDetection : MonoBehaviour {
         //If hit 10, fire both
         if (lCon == 10)
         {
-            arduino.SendArduinoMessage("LUPPERARMRUMBLE");
+            arduino.SendArduinoMessage("LUPPERARMBOTH");
         }
     }
 
@@ -112,7 +112,24 @@ public class CollisionDetection : MonoBehaviour {
         //If hit 10, fire both
         if (rCon == 10)
         {
-            arduino.SendArduinoMessage("RUPPERARMRUMBLE");
+            arduino.SendArduinoMessage("RUPPERARMBOTH");
+        }
+    }
+
+    private void IncrementFront()
+    {
+        fCon++;
+
+        //If hit 5 consecutive calls, fire rumble
+        if (fCon == 5)
+        {
+            arduino.SendArduinoMessage("BOTHRUMBLE");
+        }
+
+        //If hit 10, fire both
+        if (fCon == 10)
+        {
+            arduino.SendArduinoMessage("BOTHBOTH");
         }
     }
 
@@ -121,11 +138,11 @@ public class CollisionDetection : MonoBehaviour {
         if(collision.gameObject.tag == "Wall")
         {
             string msg = "STOP";
-            lCon = rCon = 0;
+            lCon = rCon = fCon = 0;
             arduino.SendArduinoMessage(msg);
         }
 
-        running = false;
+        
         CancelInvoke();
 
     }

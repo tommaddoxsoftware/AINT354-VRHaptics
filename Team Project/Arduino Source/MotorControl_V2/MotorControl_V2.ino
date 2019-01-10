@@ -24,10 +24,9 @@ void setup()
 
 
 void loop() {
-  digitalWrite(6, HIGH);
+
   while(Serial.available()) {
-    content = Serial.readString();
-    Serial.println(content);
+    content = Serial.readString();   
   }
 
   if(content.substring(0,9) == "LUPPERARM") { 
@@ -43,12 +42,12 @@ void loop() {
         digitalWrite(3, HIGH);
         digitalWrite(5, HIGH);
       }
-      else {
+      else if(motorType == "BOTH") {
         //Both motors
         digitalWrite(3, HIGH);
         digitalWrite(4, HIGH);
-        digitalWrite(5, HIGH);      }
-      
+        digitalWrite(5, HIGH);      
+      }      
       
   }
   if(content.substring(0,9) == "RUPPERARM") {
@@ -63,15 +62,17 @@ void loop() {
         //Coin cell motors
         digitalWrite(7, HIGH);
       }
-      else {
+      else if (motorType == "BOTH") {
         //Both motors
         digitalWrite(6, HIGH);
         digitalWrite(7, HIGH);
       }
   }
 
-  if(content.substring(0,5) == "BOTH") {
-       String motorType =  content.substring(5, (content.length())); 
+
+  if(content.substring(0,4) == "BOTH") {
+  
+       String motorType =  content.substring(4, (content.length())); 
 
        if(motorType == "COIN") {
         digitalWrite(3, HIGH);
@@ -82,8 +83,7 @@ void loop() {
         digitalWrite(6, HIGH);
         digitalWrite(4, HIGH);
        }
-
-       else {
+       else if(motorType == "BOTH"){
         FireAllMotors();
        }
     }  
